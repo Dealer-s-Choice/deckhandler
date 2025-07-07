@@ -34,6 +34,8 @@ enum {
 
 /// Enumeration of card face values (Ace can be high or low).
 enum card_face {
+  DH_CARD_NULL = -2,
+  DH_CARD_BACK = -1,
   DH_CARD_ACE = 1, ///< Ace (low)
   DH_CARD_TWO,
   DH_CARD_THREE,

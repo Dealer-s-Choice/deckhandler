@@ -45,21 +45,21 @@ static const char *faces[] = {"Ace", "2", "3",  "4",    "5",     "6",   "7",
                                  "8",   "9", "10", "Jack", "Queen", "King"};
 
 const DH_Card DH_card_back = {
-    .face_val = -1,
-    .suit = -1,
+    .face_val = DH_CARD_BACK,
+    .suit = DH_CARD_BACK,
 };
 
 const DH_Card DH_card_null = {
-    .face_val = -2,
-    .suit = -2,
+    .face_val = DH_CARD_NULL,
+    .suit = DH_CARD_NULL,
 };
 
 bool DH_is_card_back(DH_Card a) {
-  return a.face_val == DH_card_back.face_val && a.suit == DH_card_back.suit;
+  return a.face_val == DH_CARD_BACK && a.suit == DH_CARD_BACK;
 }
 
 bool DH_is_card_null(DH_Card a) {
-  return a.face_val == DH_card_null.face_val && a.suit == DH_card_null.suit;
+  return a.face_val == DH_CARD_NULL && a.suit == DH_CARD_NULL;
 }
 
 void DH_pcg_srand(uint64_t initstate, uint64_t initseq) {
