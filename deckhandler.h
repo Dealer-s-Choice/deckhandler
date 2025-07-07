@@ -33,7 +33,7 @@ enum {
 };
 
 /// Enumeration of card face values (Ace can be high or low).
-enum card_face {
+typedef enum DH_card_face {
   DH_CARD_NULL = -2,
   DH_CARD_BACK = -1,
   DH_CARD_ACE = 1, ///< Ace (low)
@@ -50,7 +50,7 @@ enum card_face {
   DH_CARD_QUEEN,
   DH_CARD_KING,
   DH_CARD_ACE_HIGH ///< Ace (high) for straight evaluation, not dealt
-};
+} DH_card_face;
 
 /// Total number of cards in a standard deck.
 #define DH_CARDS_IN_DECK 52
