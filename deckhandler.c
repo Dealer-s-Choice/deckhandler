@@ -42,7 +42,7 @@ static pcg32_random_t rng;
 static const char *suits[] = {"Hearts  ", "Diamonds", "Spades  ", "Clubs   "};
 
 static const char *faces[] = {"Ace", "2", "3",  "4",    "5",     "6",   "7",
-                                 "8",   "9", "10", "Jack", "Queen", "King"};
+                              "8",   "9", "10", "Jack", "Queen", "King"};
 
 const DH_Card DH_card_back = {
     .face_val = DH_CARD_BACK,
@@ -54,13 +54,9 @@ const DH_Card DH_card_null = {
     .suit = DH_CARD_NULL,
 };
 
-bool DH_is_card_back(DH_Card a) {
-  return a.face_val == DH_CARD_BACK && a.suit == DH_CARD_BACK;
-}
+bool DH_is_card_back(DH_Card a) { return a.face_val == DH_CARD_BACK && a.suit == DH_CARD_BACK; }
 
-bool DH_is_card_null(DH_Card a) {
-  return a.face_val == DH_CARD_NULL && a.suit == DH_CARD_NULL;
-}
+bool DH_is_card_null(DH_Card a) { return a.face_val == DH_CARD_NULL && a.suit == DH_CARD_NULL; }
 
 void DH_pcg_srand(uint64_t initstate, uint64_t initseq) {
   pcg32_srandom_r(&rng, initstate, initseq);
@@ -147,22 +143,18 @@ const char *DH_get_card_face(DH_Card card) { return faces[card.face_val - 1]; }
 
 const char *DH_get_card_suit(DH_Card card) { return suits[card.suit]; }
 
-static const char *const DH_suit_unicode[] = {
-    [DH_SUIT_DIAMONDS] = "\u2666",
-    [DH_SUIT_HEARTS]   = "\u2665",
-    [DH_SUIT_SPADES]   = "\u2660",
-    [DH_SUIT_CLUBS]    = "\u2663"
-};
+static const char *const DH_suit_unicode[] = {[DH_SUIT_DIAMONDS] = "\u2666",
+                                              [DH_SUIT_HEARTS] = "\u2665",
+                                              [DH_SUIT_SPADES] = "\u2660",
+                                              [DH_SUIT_CLUBS] = "\u2663"};
 
 const char *DH_get_unicode_suit(DH_suit suit) {
-    if (suit >= 0 && suit <= DH_SUIT_CLUBS)
-        return DH_suit_unicode[suit];
-    return "?";
+  if (suit >= 0 && suit <= DH_SUIT_CLUBS)
+    return DH_suit_unicode[suit];
+  return "?";
 }
 
-const char *DH_get_card_unicode_suit(DH_Card card) {
-    return DH_get_unicode_suit(card.suit);
-}
+const char *DH_get_card_unicode_suit(DH_Card card) { return DH_get_unicode_suit(card.suit); }
 
 const char *DH_get_card_face_str(int val) {
   switch (val) {

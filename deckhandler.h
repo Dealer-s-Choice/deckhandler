@@ -17,8 +17,8 @@
 extern "C" {
 #endif
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 /// Number of face values in a standard card deck (Ace to King).
 #define NUM_OF_FACES 13
@@ -29,7 +29,7 @@ typedef enum {
   DH_SUIT_DIAMONDS, ///< Diamonds suit
   DH_SUIT_SPADES,   ///< Spades suit
   DH_SUIT_CLUBS,    ///< Clubs suit
-  DH_SUIT_MAX ///< Number of suits
+  DH_SUIT_MAX       ///< Number of suits
 } DH_suit;
 
 /// Enumeration of card face values (Ace can be high or low).
@@ -75,7 +75,7 @@ bool DH_is_card_null(DH_Card a);
  * @DH_Deck
  * @brief Represents a full deck of 52 playing cards.
  */
-typedef struct  {
+typedef struct {
   DH_Card card[DH_CARDS_IN_DECK]; ///< Array of all cards in the deck
   int top_card;
 } DH_Deck;
