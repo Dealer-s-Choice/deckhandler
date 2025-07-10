@@ -147,19 +147,21 @@ const char *DH_get_card_face(DH_Card card) { return faces[card.face_val - 1]; }
 
 const char *DH_get_card_suit(DH_Card card) { return suits[card.suit]; }
 
-const char *DH_get_card_unicode_suit(DH_Card card) {
-  switch (card.suit) {
-  case DH_SUIT_DIAMONDS:
-    return "\u2666";
-  case DH_SUIT_HEARTS:
-    return "\u2665";
-  case DH_SUIT_SPADES:
-    return "\u2660";
-  case DH_SUIT_CLUBS:
-    return "\u2663";
-  default:
+static const char *const DH_suit_unicode[] = {
+    [DH_SUIT_DIAMONDS] = "\u2666",
+    [DH_SUIT_HEARTS]   = "\u2665",
+    [DH_SUIT_SPADES]   = "\u2660",
+    [DH_SUIT_CLUBS]    = "\u2663"
+};
+
+const char *DH_get_unicode_suit(DH_suit suit) {
+    if (suit >= 0 && suit <= DH_SUIT_CLUBS)
+        return DH_suit_unicode[suit];
     return "?";
-  }
+}
+
+const char *DH_get_card_unicode_suit(DH_Card card) {
+    return DH_get_unicode_suit(card.suit);
 }
 
 const char *DH_get_card_face_str(int val) {

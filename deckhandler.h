@@ -24,13 +24,13 @@ extern "C" {
 #define NUM_OF_FACES 13
 
 /// Enumeration of the four standard card suits.
-enum {
+typedef enum {
   DH_SUIT_HEARTS,   ///< Hearts suit
   DH_SUIT_DIAMONDS, ///< Diamonds suit
   DH_SUIT_SPADES,   ///< Spades suit
   DH_SUIT_CLUBS,    ///< Clubs suit
   DH_SUIT_MAX ///< Number of suits
-};
+} DH_suit;
 
 /// Enumeration of card face values (Ace can be high or low).
 typedef enum DH_card_face {
@@ -167,6 +167,8 @@ const char *DH_get_card_suit(DH_Card card);
  * @return Pointer to a UTF-8 encoded Unicode string.
  */
 const char *DH_get_card_unicode_suit(DH_Card card);
+
+const char *DH_get_unicode_suit(DH_suit suit);
 
 /**
  * @brief Get the string name of a face value given its integer representation.
