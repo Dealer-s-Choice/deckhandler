@@ -42,7 +42,7 @@ static pcg32_random_t rng;
 static const char *suits[] = {"Hearts  ", "Diamonds", "Spades  ", "Clubs   "};
 
 static const char *faces[] = {"Ace", "2", "3",  "4",    "5",     "6",   "7",
-                              "8",   "9", "10", "Jack", "Queen", "King"};
+                              "8",   "9", "10", "Jack", "Queen", "King", "Ace"};
 
 const DH_Card DH_card_back = {
     .face_val = DH_CARD_BACK,
@@ -158,7 +158,7 @@ const char *DH_get_card_unicode_suit(DH_Card card) { return DH_get_unicode_suit(
 
 const char *DH_get_card_face_str(int val) {
   switch (val) {
-  case 1:
+  case 1: case 14:
     return "A";
   case 11:
     return "J";
