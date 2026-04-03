@@ -21,8 +21,33 @@ on:
     - '**/windows.yml'
 
 jobs:
+  msvc:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Set up MSVC environment
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        arch: x64
+
+    - name: Install Meson and Ninja
+      run: pip install meson ninja
+
+    - name: Meson setup
+      env:
+        PKG_CONFIG_PATH: ${{ env.VCPKG_INSTALLATION_ROOT }}\installed\x64-windows\lib\pkgconfig
+      run: |
+        meson setup _build -Db_sanitize=none
+
+    - name: Build
+      run: meson compile -C _build
+
+    - name: Test
+      run: meson test --no-stdsplit -v -C _build
   MSYS2:
     runs-on: windows-latest
+    needs: msvc
     steps:
     - uses: actions/checkout@v6
     - uses: msys2/setup-msys2@v2
