@@ -73,8 +73,8 @@ static void DH_init_deck(DH_Deck *deck) {
   deck->top_card = 0;
 
   int card = 0;
-  int suit = 0;
-  int face = DH_CARD_ACE;
+  int8_t suit = 0;
+  int8_t face = DH_CARD_ACE;
 
   while (suit < DH_SUIT_MAX) {
     deck->card[card].face_val = face++;
