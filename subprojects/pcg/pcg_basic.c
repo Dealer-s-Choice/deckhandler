@@ -21,6 +21,9 @@
  *       http://www.pcg-random.org
  */
 
+/* Modified from the original: added explicit casts to suppress MSVC warnings
+ * C4146 (unary minus on unsigned type) and C4244 (uint64_t to uint32_t). */
+
 /*
  * This code is derived from the full C implementation, which is in turn
  * derived from the canonical C++ PCG implementation. The C++ version
@@ -61,9 +64,9 @@ uint32_t pcg32_random_r(pcg32_random_t* rng)
 {
     uint64_t oldstate = rng->state;
     rng->state = oldstate * 6364136223846793005ULL + rng->inc;
-    uint32_t xorshifted = ((oldstate >> 18u) ^ oldstate) >> 27u;
-    uint32_t rot = oldstate >> 59u;
-    return (xorshifted >> rot) | (xorshifted << ((-rot) & 31));
+    uint32_t xorshifted = (uint32_t)(((oldstate >> 18u) ^ oldstate) >> 27u);
+    uint32_t rot = (uint32_t)(oldstate >> 59u);
+    return (xorshifted >> rot) | (xorshifted << ((0u - rot) & 31u));
 }
 
 uint32_t pcg32_random(void)
@@ -92,7 +95,7 @@ uint32_t pcg32_boundedrand_r(pcg32_random_t* rng, uint32_t bound)
     // because this version will calculate the same modulus, but the LHS
     // value is less than 2^32.
 
-    uint32_t threshold = -bound % bound;
+    uint32_t threshold = (0u - bound) % bound;
 
     // Uniformity guarantees that this loop will terminate.  In practice, it
     // should usually terminate quickly; on average (assuming all bounds are
