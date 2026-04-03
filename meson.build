@@ -48,9 +48,12 @@ buildtarget = library(
 
 # How to use in a superproject and other info
 # https://mesonbuild.com/Subprojects.html
+_compile_args = get_option('default_library') == 'static' ? ['-DDECKHANDLER_STATIC'] : []
+
 deckhandler_dep = declare_dependency(
   link_with: buildtarget,
-    dependencies: pcg_dep,
+  compile_args: _compile_args,
+  dependencies: pcg_dep,
   include_directories: '.',
 )
 

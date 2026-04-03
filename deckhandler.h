@@ -23,6 +23,8 @@ extern "C" {
 #if defined(_WIN32) || defined(__CYGWIN__)
 #  ifdef DECKHANDLER_BUILD
 #    define DH_API __declspec(dllexport)
+#  elif defined(DECKHANDLER_STATIC)
+#    define DH_API
 #  else
 #    define DH_API __declspec(dllimport)
 #  endif
