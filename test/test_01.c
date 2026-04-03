@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
   } while (deals_num++ < deals_max);
 
   puts("\n\n\t]=[ Create 4 decks, shuffle each one, and deal them all out ]=[\n");
-  int total_decks = 4;
+  enum { total_decks = 4 };
   DH_Deck deck_num[total_decks];
   for (int i = 0; i < total_decks; i++)
     deck_num[i] = DH_get_new_deck();

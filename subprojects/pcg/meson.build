@@ -6,6 +6,8 @@ project(
     default_options: ['warning_level=3', 'c_std=c99'],
 )
 
+cc = meson.get_compiler('c')
+
 extra_flags = [
     '-fno-common',
     '-fstack-protector-strong',
@@ -16,7 +18,7 @@ extra_flags = [
     '-Werror=strict-aliasing',
 ]
 
-add_project_arguments(extra_flags, language: 'c')
+add_project_arguments(cc.get_supported_arguments(extra_flags), language: 'c')
 
 _pcg = static_library('pcg', 'pcg_basic.c')
 

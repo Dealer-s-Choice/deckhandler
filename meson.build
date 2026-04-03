@@ -1,7 +1,7 @@
 project(
   'deckhandler',
   'c',
-  version: '0.1.0999',
+  version: '0.0.1',
   meson_version: '>= 0.56.0',
   default_options: ['warning_level=3', 'c_std=c99'],
 )
@@ -20,6 +20,18 @@ extra_flags = [
 
 add_project_arguments(cc.get_supported_arguments(extra_flags), language: 'c')
 
+# Parse version components
+version_components = meson.project_version().split('.')
+major_version = version_components[0]
+minor_version = version_components[1]
+patch_version = version_components[2]
+
+conf = configuration_data()
+conf.set('DH_VERSION_MAJOR', major_version)
+conf.set('DH_VERSION_MINOR', minor_version)
+conf.set('DH_VERSION_PATCH', patch_version)
+config_h = configure_file(output : 'config.h', configuration : conf)
+
 src = files('deckhandler.c')
 
 pcg = subproject('pcg')
@@ -28,6 +40,7 @@ pcg_dep = pcg.get_variable('pcg_dep')
 buildtarget = library(
   meson.project_name(),
   src,
+  c_args: '-DDECKHANDLER_BUILD',
   dependencies: pcg_dep,
   version: meson.project_version(),
   install: not meson.is_subproject(),

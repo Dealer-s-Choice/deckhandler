@@ -20,6 +20,16 @@ extern "C" {
 #include <stdbool.h>
 #include <stdint.h>
 
+#if defined(_WIN32) || defined(__CYGWIN__)
+#  ifdef DECKHANDLER_BUILD
+#    define DH_API __declspec(dllexport)
+#  else
+#    define DH_API __declspec(dllimport)
+#  endif
+#else
+#  define DH_API
+#endif
+
 /// Number of face values in a standard card deck (Ace to King).
 #define NUM_OF_FACES 13
 
@@ -64,12 +74,12 @@ typedef struct {
   int8_t suit;     ///< Suit of the card (see enum)
 } DH_Card;
 
-extern const DH_Card DH_card_back;
-extern const DH_Card DH_card_null;
+extern DH_API const DH_Card DH_card_back;
+extern DH_API const DH_Card DH_card_null;
 
-bool DH_is_card_back(DH_Card a);
+DH_API bool DH_is_card_back(DH_Card a);
 
-bool DH_is_card_null(DH_Card a);
+DH_API bool DH_is_card_null(DH_Card a);
 
 /**
  * @DH_Deck
@@ -86,14 +96,14 @@ typedef struct {
  * @param initstate Initialization state value.
  * @param initseq   Initialization sequence value.
  */
-void DH_pcg_srand(uint64_t initstate, uint64_t initseq);
+DH_API void DH_pcg_srand(uint64_t initstate, uint64_t initseq);
 
 /**
  * @brief Automatically seed the PCG random number generator with internal defaults.
  *
  * Uses `time(NULL)` and pointer values for entropy.
  */
-void DH_pcg_srand_auto(void);
+DH_API void DH_pcg_srand_auto(void);
 
 /**
  * @brief Create and initialize a new deck of cards.
@@ -103,7 +113,7 @@ void DH_pcg_srand_auto(void);
  *
  * @return A fully initialized deck of cards.
  */
-DH_Deck DH_get_new_deck(void);
+DH_API DH_Deck DH_get_new_deck(void);
 
 /**
  * @brief Deal the top card from the deck.
@@ -115,14 +125,14 @@ DH_Deck DH_get_new_deck(void);
  * @param deck Pointer to the deck from which to deal a card.
  * @return The card at the current top position of the deck.
  */
-DH_Card DH_deal_top_card(DH_Deck *deck);
+DH_API DH_Card DH_deal_top_card(DH_Deck *deck);
 
 /**
  * @brief Shuffle a deck of cards using the PCG random number generator.
  *
  * @param deck_dh Pointer to the deck to shuffle.
  */
-void DH_shuffle_deck(DH_Deck *deck_dh);
+DH_API void DH_shuffle_deck(DH_Deck *deck_dh);
 
 /**
  * @brief Cuts the deck at the specified index, simulating a real-life card cut.
@@ -140,7 +150,7 @@ void DH_shuffle_deck(DH_Deck *deck_dh);
  *
  * @see DH_shuffle_deck
  */
-void DH_cut_deck(DH_Deck *deck, int cut_point);
+DH_API void DH_cut_deck(DH_Deck *deck, int cut_point);
 
 /**
  * @brief Get the string name of a card's face value (e.g., "Ace", "10", "King").
@@ -148,7 +158,7 @@ void DH_cut_deck(DH_Deck *deck, int cut_point);
  * @param card The card to query.
  * @return Pointer to a constant string.
  */
-const char *DH_get_card_face(DH_Card card);
+DH_API const char *DH_get_card_face(DH_Card card);
 
 /**
  * @brief Get the string name of a card's suit (e.g., "Hearts", "Spades").
@@ -156,7 +166,7 @@ const char *DH_get_card_face(DH_Card card);
  * @param card The card to query.
  * @return Pointer to a constant string.
  */
-const char *DH_get_card_suit(DH_Card card);
+DH_API const char *DH_get_card_suit(DH_Card card);
 
 /**
  * @brief Get the Unicode symbol representing the card's suit.
@@ -166,9 +176,9 @@ const char *DH_get_card_suit(DH_Card card);
  * @param card The card to query.
  * @return Pointer to a UTF-8 encoded Unicode string.
  */
-const char *DH_get_card_unicode_suit(DH_Card card);
+DH_API const char *DH_get_card_unicode_suit(DH_Card card);
 
-const char *DH_get_unicode_suit(DH_suit suit);
+DH_API const char *DH_get_unicode_suit(DH_suit suit);
 
 /**
  * @brief Get the string name of a face value given its integer representation.
@@ -176,7 +186,7 @@ const char *DH_get_unicode_suit(DH_suit suit);
  * @param val Integer value representing a face (1–13).
  * @return Pointer to a constant string.
  */
-const char *DH_get_card_face_str(int val);
+DH_API const char *DH_get_card_face_str(int val);
 
 #ifdef __cplusplus
 }
