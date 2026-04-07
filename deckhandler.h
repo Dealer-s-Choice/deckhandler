@@ -72,8 +72,8 @@ typedef enum DH_card_face {
  * @brief Represents a single playing card with a face value and suit.
  */
 typedef struct {
-  int8_t face_val; ///< Value of the card face (1–13)
-  int8_t suit;     ///< Suit of the card (see enum)
+  int32_t face_val; ///< Value of the card face (1–13)
+  int32_t suit;     ///< Suit of the card (see enum)
 } DH_Card;
 
 extern DH_API const DH_Card DH_card_back;
