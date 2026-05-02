@@ -1,17 +1,19 @@
-[![Linux](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/linux.yml/badge.svg)](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/linux.yml)
-[![Windows](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/windows.yml/badge.svg)](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/windows.yml)
+[![Linux](https://github.com/Dealer-s-Choice/deckhandler/actions/workflows/linux.yml/badge.svg)](https://github.com/Dealer-s-Choice/deckhandler/actions/workflows/linux.yml)
+[![Windows](https://github.com/Dealer-s-Choice/deckhandler/actions/workflows/windows.yml/badge.svg)](https://github.com/Dealer-s-Choice/deckhandler/actions/workflows/windows.yml)
 [![MacOS](https://github.com/Dealer-s-Choice/deckhandler/actions/workflows/macos.yml/badge.svg)](https://github.com/Dealer-s-Choice/deckhandler/actions/workflows/macos.yml)
+
+The code for this library has been moved into [Dealer's
+Choice](https://github.com/Dealer-s-Choice/dealers-choice), and this project
+will be archived.
 
 # deckhandler
 Library that will create a deck of cards and shuffle it.
 
 Detailed example usage can be seen in
-[example-01.c](https://github.com/theimpossibleastronaut/deckhandler/blob/master/test/test_01.c)
-and
-[aa-pokerhands](https://github.com/theimpossibleastronaut/aapokerhands)
+[test/test_01.c](https://github.com/Dealer-s-Choice/deckhandler/blob/master/test/test_01.c).
 
 Commented types and functions in
-[deckhandler.h](https://github.com/theimpossibleastronaut/deckhandler/blob/master/deckhandler.h)
+[deckhandler.h](https://github.com/Dealer-s-Choice/deckhandler/blob/master/deckhandler.h)
 
 ## Dependencies
 
@@ -41,8 +43,8 @@ To uninstall:
 
 ## Projects that use deckhandler
 
-* [aa-pokerhands](https://github.com/theimpossibleastronaut/aapokerhands)
+* [Dealer's Choice](https://github.com/Dealer-s-Choice/dealers-choice)
 
 ## Using the library with other languages
 
-See [SWIG_INTERFACE.md](https://github.com/theimpossibleastronaut/deckhandler/blob/master/SWIG_INTERFACE.md)
+See [SWIG_INTERFACE.md](https://github.com/Dealer-s-Choice/deckhandler/blob/master/SWIG_INTERFACE.md)
